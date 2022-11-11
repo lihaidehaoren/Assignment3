@@ -59,7 +59,5 @@ public class FillMatrix {
             }
             System.out.println();
         }
-
     }
-
 }

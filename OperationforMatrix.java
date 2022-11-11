@@ -18,35 +18,78 @@ public class OperationforMatrix {
             }
         }
 
+        int[][] a1=new int[row/2][col/2];
+        int[][] a2=new int[row/2][col/2];
+        int[][] a3=new int[row/2][col/2];
+        int[][] a4=new int[row/2][col/2];
+
+        int[][] b1=new int[row/2][col/2];
+        int[][] b2=new int[row/2][col/2];
+        int[][] b3=new int[row/2][col/2];
+        int[][] b4=new int[row/2][col/2];
+
+        for (int i=0;i<row/2;i++){
+            for (int j=0;j<row/2;j++){
+                a1[i][j]=string1[i][j];
+                a2[i][j]=string1[i][j+row/2];
+                a3[i][j]=string1[i+row/2][j];
+                a4[i][j]=string1[i+row/2][j+row/2];
+                b1[i][j]=string2[i][j];
+                b2[i][j]=string2[i][j+row/2];
+                b3[i][j]=string2[i+row/2][j];
+                b4[i][j]=string2[i+row/2][j+row/2];
+            }
+        }
+
+        int[][] b2t=new int[row/2][col/2];
+        int[][] a3t=new int[row/2][col/2];
+        for (int i=0;i<row/2;i++){
+            for (int j=0;j<row/2;j++){
+                b2t[i][j]=b2[j][i];
+                a3t[i][j]=a3[j][i];
+            }
+        }
+
+
+        int[][] c1=new int[row/2][col/2];
+        int[][] c2=new int[row/2][col/2];
+        int[][] c3=new int[row/2][col/2];
+        int[][] c4=new int[row/2][col/2];
+
+        for (int i=0;i<row/2;i++){
+            for (int j=0;j<row/2;j++){
+                c1[i][j]=a1[i][j]+b1[i][j];
+                c4[i][j]=a4[i][j]-b4[i][j];
+            }
+        }
+
+        for (int i = 0; i < row/2; i++) {
+            for (int j = 0; j < row/2; j++) {
+                for (int k = 0; k < row/2; k++) {
+                    c2[i][k] += a2[i][j] * b2t[j][k];
+                    c3[i][k] += b3[i][j] * a3t[j][k];
+                }
+            }
+        }
+
+
+
+
+
+
         int[][] string3=new int[row][col];
 
-        if (row==2){
-            string3[0][0]=string1[0][0]+string2[0][0];
-            string3[0][1]=string1[0][1]*string2[0][1];
-            string3[1][0]=string1[1][0]*string2[1][0];
-            string3[1][1]=string1[1][1]+string2[1][1];
+        for (int i=0;i<row/2;i++){
+            for (int j=0;j<row/2;j++){
+                string3[i][j]=c1[i][j];
+                string3[i][j+row/2]=c2[i][j];
+                string3[i+row/2][j]=c3[i][j];
+                string3[i+row/2][j+row/2]=c4[i][j];
+            }
         }
-        else if (row==4){
-            string3[0][0]=string1[0][0]+string2[0][0];
-            string3[0][1]=string1[0][1]+string2[0][1];
-            string3[1][0]=string1[1][0]+string2[1][0];
-            string3[1][1]=string1[1][1]+string2[1][1];
 
-            string3[2][2]=string1[2][2]-string2[2][2];
-            string3[2][3]=string1[2][3]-string2[2][3];
-            string3[3][2]=string1[3][2]-string2[3][2];
-            string3[3][3]=string1[3][3]-string2[3][3];
 
-            string3[0][2]=string1[0][2]*string2[0][2]+string1[0][3]*string2[0][3];
-            string3[1][2]=string1[1][2]*string2[0][2]+string1[1][3]*string2[0][3];
-            string3[0][3]=string1[0][2]*string2[1][2]+string1[0][3]*string2[1][3];
-            string3[1][3]=string1[1][2]*string2[1][2]+string1[1][3]*string2[1][3];
 
-            string3[2][0]=string2[2][0]*string1[2][0]+string2[2][1]*string1[2][1];
-            string3[3][0]=string2[3][0]*string1[2][0]+string2[3][1]*string1[2][1];
-            string3[2][1]=string2[2][0]*string1[3][0]+string2[2][1]*string1[3][1];
-            string3[3][1]=string2[3][0]*string1[3][0]+string2[3][1]*string1[3][1];
-        }
 
         for(int i=0; i<row;i++){
             for(int j=0;j<col;j++){

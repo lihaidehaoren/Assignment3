@@ -22,6 +22,7 @@ public class FiveWins {
         }
 
         boolean flag=false;
+        int d=0;
 
         for(int i=4; i<row+4;i++){
             for(int j=4;j<col+4;j++){
@@ -95,6 +96,11 @@ public class FiveWins {
                     System.out.print(" ");
                     System.out.println(j-3);
                     flag=false;
+                    d=d+1;
+                }
+
+                if (d==0){
+                    System.out.print("-1");
                 }
             }
         }

@@ -99,10 +99,12 @@ public class FiveWins {
                     d=d+1;
                 }
 
-                if (d==0){
-                    System.out.print("-1");
-                }
+
             }
+        }
+
+        if (d==0){
+            System.out.print("-1");
         }
 
 
